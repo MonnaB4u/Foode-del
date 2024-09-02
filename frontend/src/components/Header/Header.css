@@ -37,3 +37,24 @@
     border-radius: 50px;
 }
 
+@media (max-width:1050px){
+
+ .header_conents {
+    max-width: 45%;
+ }
+    
+}
+
+@media (max-width:750px){
+ 
+    .header_conents {
+       max-width: 65%;
+    }
+      .header_conents p{
+       display: none;
+      } 
+      .header_conents button{
+       padding: 2vw 4vw;
+      }
+   }
+
