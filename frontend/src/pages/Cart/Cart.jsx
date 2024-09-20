@@ -4,7 +4,7 @@ import { StoreContext } from '../../components/context/StoreContex'
 import './Cart.css'
 import { useNavigate } from 'react-router-dom'
 function Cart() {
-  const { cartItems, food_list, removeFromCart, getTotalCartAmount } = useContext(StoreContext)
+  const { cartItems, food_list, removeFromCart, getTotalCartAmount,url } = useContext(StoreContext)
 
   let deleveryFee=0
   if(getTotalCartAmount()>=256){
@@ -35,7 +35,7 @@ function Cart() {
               return (
                 <div className="">
                   <div className="cart-items-title cart-items-item">
-                    <img src={items.image} alt="" />
+                    <img src={url+'/images/'+items.image} alt="" />
                     <p>{items.name}</p>
                     <p>${items.price}</p>
                     <p>{cartItems[items._id]}</p>
@@ -68,7 +68,10 @@ function Cart() {
               <p>${getTotalCartAmount()>0? getTotalCartAmount()+deleveryFee: 0}</p>
             </div>
           </div>
-          <button onClick={()=>navigate("/order")}>Proceed to checkout</button>
+          {
+            getTotalCartAmount()> 0 ?
+            <button onClick={()=>navigate("/order")}>Proceed to checkout</button> : ""
+          }
         </div>
 
         <div className="cart-promocode">

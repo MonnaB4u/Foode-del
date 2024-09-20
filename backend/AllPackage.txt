@@ -1,0 +1,15 @@
+int install
+ express=
+  mongoose= help us connect with DB
+   jsonwebtoken= using this for Auth system 
+   bcrypt = encrypt user data and store in DB
+   cors= give permission connect with backend
+   body-parser= parse data comming throut the user.
+   dotenv= 
+   multer= for create image store system
+   stripe= for  " payment gateway system
+   validator= for check email and pass valid or not
+   nodemon= after save our code server will restart.
+
+
+server > config > models > controller >route
