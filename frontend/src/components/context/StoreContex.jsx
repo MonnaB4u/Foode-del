@@ -9,17 +9,23 @@ const StoreContextProvider = (props) => {
     const [cartItems, setcartItems] = useState({})
 
     // Add to cart function
-    const addToCart = (itemId) => {
+    const addToCart = async (itemId) => {
         if (!cartItems[itemId]) {
             setcartItems((prev) => ({ ...prev, [itemId]: 1 }))
         } else {
             setcartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 })) //if already have the product , then item will be increase with previus item
         }
+        if (token) {
+            await axios.post(url + "/api/cart/add", { itemId }, { headers: { token } })
+        }
     }
 
     // remove cart cart function
-    const removeFromCart = (itemId) => {
+    const removeFromCart = async (itemId) => {
         setcartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }))
+        if (token) {
+            await axios.post(url + "/api/cart/remove", { itemId }, { headers: { token } })
+        }
     }
     // Calculate all datass function
     const getTotalCartAmount = () => {
@@ -46,6 +52,11 @@ const StoreContextProvider = (props) => {
         }
     };
 
+    const loadCartData = async (token) => {
+        const response = await axios.post(url + "/api/cart/get", {}, { headers: { token } })
+        setcartItems(response.data.cartData)
+    }
+
     // Token management
     const [token, setToken] = useState("");
 
@@ -58,6 +69,7 @@ const StoreContextProvider = (props) => {
             const storedToken = localStorage.getItem("token");
             if (storedToken) {
                 setToken(storedToken);
+                await loadCartData(localStorage.getItem("token"))
             }
         }
         // Load data on component mount
