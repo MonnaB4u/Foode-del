@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import './Myorders'
+import './Myorders.css'
 import { StoreContext } from '../../components/context/StoreContex'
 import axios from 'axios'
 import { assets } from '../../assets/frontend_assets/assets'
@@ -17,6 +17,7 @@ function Myorders() {
             console.error("Error fetching orders:", error);
         }
     };
+
     useEffect(() => {
         if (token) {
             fetchOrders()
@@ -24,6 +25,7 @@ function Myorders() {
 
         }
     }, [token])
+
     return (
         <div className="my-orders">
             <h2>My Orders</h2>
@@ -38,7 +40,7 @@ function Myorders() {
                                     if (index === orders.items.length - 1) {
                                         return item.name + " X " + item.quantity
                                     } else {
-                                        return item.name + " X " + item.quantity + ","
+                                        return item.name + " X " + item.quantity + "," // if we are in the last items we dont have the ,
                                     }
                                 })}
                                 </p>
@@ -46,7 +48,7 @@ function Myorders() {
                                 <p>${orders.amount}</p>
                                 <p>Items: {orders.items.length}</p>
                                 <p><span>&#x25cf;</span><b>{orders.status}</b></p>
-                                <button>Track Order=</button>
+                                <button onClick={fetchOrders}>Track Order</button>
                             </div>
                         )
                     })}

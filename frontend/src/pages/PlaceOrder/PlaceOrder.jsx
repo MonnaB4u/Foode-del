@@ -1,5 +1,6 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { StoreContext } from '../../components/context/StoreContex';
+import {useNavigate} from "react-router-dom";
 import './PlaceOrder.css';
 import axios from 'axios';
 
@@ -56,6 +57,18 @@ function PlaceOrder() {
       alert("An unexpected error occurred. Please try again.");
     }
   };
+
+
+    //for hide order option if user not login
+    const navigate = useNavigate()
+
+    useEffect(()=>{
+      if(!token){
+      navigate('/cart')
+      }else if(getTotalCartAmount()===0){
+        navigate('/cart')
+      }
+    },[])
 
   return (
 
