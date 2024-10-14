@@ -86,7 +86,7 @@
 
 
 import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt"; // or "bcryptjs"
+import bcrypt from "bcryptjs";
 import validator from "validator";
 import userModel from "../models/userModel.js";
 
@@ -95,7 +95,7 @@ const createToken = (id) => {
     if (!process.env.JWT_SECRET) {
         throw new Error("JWT_SECRET is not defined");
     }
-    return jwt.sign({ id }, process.env.JWT_SECRET);
+    return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '1h' }); // Optional expiration
 };
 
 // User login
@@ -117,7 +117,7 @@ const loginUser = async (req, res) => {
 
     } catch (error) {
         console.error(error);
-        res.status(500).json({ success: false, message: "Error occurred" });
+        res.status(500).json({ success: false, message: "Error occurred during login" });
     }
 };
 
@@ -147,8 +147,8 @@ const registerUser = async (req, res) => {
             password: hashedPassword,
         });
 
-        const user = await newUser.save();
-        const token = createToken(user._id);
+        await newUser.save();
+        const token = createToken(newUser._id);
         res.json({ success: true, token });
         
     } catch (error) {
