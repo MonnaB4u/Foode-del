@@ -1,7 +1,9 @@
 import React from 'react'
 import './Header.css'
+import { headerImage } from '../../assets/frontend_assets/assets'
 
 function Header() {
+
   return (
     <div>
       <div className="header">

@@ -82,6 +82,14 @@ export const assets = {
     parcel_icon
 }
 
+
+export const headerImage = [
+    {
+        image:header_img
+    },
+]
+
+
 export const menu_list = [
     {
         menu_name: "Salad",
