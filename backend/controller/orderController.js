@@ -4,7 +4,6 @@ import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-// const frontend_url = "https://food-del-frontend-mdwi.onrender.com";
 const frontend_url = "https://food-del-frontend-mdwi.onrender.com";
 
 // Function to calculate the delivery fee based on the amount

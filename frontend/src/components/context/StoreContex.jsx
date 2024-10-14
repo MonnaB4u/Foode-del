@@ -38,8 +38,6 @@ const StoreContextProvider = (props) => {
         }
         return totalAmount;
     }
-    // const url = 'http://localhost:4000';
-
      const url= 'https://foode-del-backend.onrender.com'
 
     
