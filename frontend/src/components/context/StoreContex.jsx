@@ -39,9 +39,14 @@ const StoreContextProvider = (props) => {
         return totalAmount;
     }
 
+<<<<<<< HEAD
      // const url = 'http://localhost:4000';
+=======
+    // const url = 'http://localhost:4000';
+>>>>>>> 5ff87c20326b8f8df75bd4601b7b0e91230057af
      const url= 'https://foode-del-backend.onrender.com'
 
+    
     // Food list state
     const [food_list, setFoodList] = useState([]); // Initialize as an array
     const fetchFoodList = async () => {
