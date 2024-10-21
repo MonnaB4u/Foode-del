@@ -31,7 +31,7 @@ function FoodDisplay({ category }) {
             <h2>Top dishes near you</h2>
             <div className="food-display-list">
                 {
-                    food_list ?
+                    !food_list ?
                         <p className='apiTimer'>{
                             timeLeft ===0 ? `please clink on api link first then api will work fine` : `Loading.........${timeLeft}`
                         }</p>
