@@ -29,7 +29,7 @@ function FoodDisplay({ category }) {
             <h2>Top dishes near you</h2>
             <div className="food-display-list">
                 {
-                    !food_list == 0 ?
+                    food_list == 0 ?
                         <p className='apiTimer'>
                             {timeLeft === 0
                                 ? (
