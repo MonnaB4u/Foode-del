@@ -5,7 +5,7 @@ import { StoreContext } from '../context/StoreContex'
 import FoodItem from '../FoodItem/FoodItem'
 
 function FoodDisplay({ category }) {
-    const { food_list } = useContext(StoreContext)
+    const { food_list,url } = useContext(StoreContext)
 
     const [timeLeft, setTimeLeft] = useState(10);  // Start from 10 seconds
     const [isTimeUp, setIsTimeUp] = useState(false);  // Flag to check if time is up
@@ -23,18 +23,17 @@ function FoodDisplay({ category }) {
 
 
 
-
-
     return (
 
         <div className="food-display" id="food-display">
             <h2>Top dishes near you</h2>
             <div className="food-display-list">
                 {
-                    !food_list ?
+                    food_list == 0  ?
                         <p className='apiTimer'>{
-                            timeLeft ===0 ? `please clink on api link first then api will work fine` : `Loading.........${timeLeft}`
-                        }</p>
+                            timeLeft ===0 ? `please clink on api link first then api will work fine `  : `Loading.........${timeLeft}`
+                            
+                        } <a style={{cursor:"pointer" , color:"blue"}} href={url}>Click here</a> </p>
                      
                         :
 
